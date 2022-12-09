@@ -115,7 +115,12 @@ def run(
     model.warmup(imgsz=(1 if pt or model.triton else bs, 3, *imgsz))  # warmup
     seen, windows, dt = 0, [], (Profile(), Profile(), Profile())
     line_pt_list = [] # list of all bbox center locations
-    pt_count = 1
+    
+    # -------------------------------
+    # For polynomial regression
+    pt_count = 1 
+    # -------------------------------
+    
     for path, im, im0s, vid_cap, s in dataset:
         with dt[0]:
             im = torch.from_numpy(im).to(model.device)
@@ -175,6 +180,7 @@ def run(
                         label = None if hide_labels else (names[c] if hide_conf else f'{names[c]} {conf:.2f}')
                         annotator.box_label(xyxy, label, color=colors(c, True))
                         
+                        # -----------------------------------------------------------------------------------
                         # --for basketball path drawing--
                         xywh = xyxy2xywh(torch.tensor(xyxy).view(1, 4)).view(-1).tolist()
                         pt2 = (int(xywh[0] - xywh[2] * 0.25), int(xywh[1] - xywh[3] * 0.25)) # center point of bounding box
@@ -209,7 +215,8 @@ def run(
                         # trim the line
                         if (pt_count > 10):
                           line_pt_list = line_pt_list[1:]
-
+                        # -----------------------------------------------------------------------------------
+                        
                     if save_crop:
                         save_one_box(xyxy, imc, file=save_dir / 'crops' / names[c] / f'{p.stem}.jpg', BGR=True)
                         
