@@ -114,10 +114,10 @@ def run(
     # Run inference
     model.warmup(imgsz=(1 if pt or model.triton else bs, 3, *imgsz))  # warmup
     seen, windows, dt = 0, [], (Profile(), Profile(), Profile())
-    line_pt_list = [] # list of all bbox center locations
     
     # -------------------------------
     # For polynomial regression
+    line_pt_list = [] # list of all bbox center locations
     pt_count = 1 
     # -------------------------------
     
