@@ -9,3 +9,6 @@ In training my detection model, I used a public dataset found here: https://univ
 # Model in Action
 ![ezgif-3-d21625c912](https://user-images.githubusercontent.com/59929807/207145392-e288b676-77e4-4a34-a9e5-c180e81588a1.gif)
 ![ezgif-3-9db870c2c3](https://user-images.githubusercontent.com/59929807/207145427-010d3300-8e76-4a27-9358-8fac2f681ae5.gif)
+
+# Report
+The full report for the project can be found <a href="BasketballPrediction.pdf" class="image fit"><img src="images/marr_pic.jpg" alt="">here</a>.
